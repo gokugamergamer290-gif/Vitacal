@@ -1,0 +1,136 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Metas nutricionais e perfil corporal do usuário.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "UID do usuário autenticado" },
+        "displayName": { "type": "string", "description": "Nome de exibição do usuário" },
+        "dailyCalorieGoal": { "type": "integer", "description": "Meta diária de calorias em kcal" },
+        "proteinGoalG": { "type": "integer", "description": "Meta diária de proteínas em gramas" },
+        "carbsGoalG": { "type": "integer", "description": "Meta diária de carboidratos em gramas" },
+        "fatGoalG": { "type": "integer", "description": "Meta diária de gorduras em gramas" },
+        "waterGoalMl": { "type": "integer", "description": "Meta diária de hidratação em mililitros" },
+        "weightKg": { "type": "number", "description": "Peso corporal atual em kg" },
+        "heightCm": { "type": "integer", "description": "Altura em centímetros" },
+        "age": { "type": "integer", "description": "Idade em anos" },
+        "sex": { "type": "string", "enum": ["M", "F"] },
+        "activityLevel": { "type": "string", "enum": ["sedentary", "light", "moderate", "active"] },
+        "goalType": { "type": "string", "enum": ["lose", "maintain", "gain"] },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())" }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "dailyCalorieGoal",
+        "proteinGoalG",
+        "carbsGoalG",
+        "fatGoalG",
+        "waterGoalMl",
+        "weightKg",
+        "heightCm",
+        "age",
+        "sex",
+        "activityLevel",
+        "goalType",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "MealEntry": {
+      "title": "MealEntry",
+      "description": "Registro individual de alimento consumido em uma refeição.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "UID do proprietário" },
+        "dateKey": { "type": "string", "description": "Data no formato YYYY-MM-DD" },
+        "mealType": { "type": "string", "enum": ["breakfast", "lunch", "dinner", "snack"] },
+        "foodName": { "type": "string", "description": "Nome do alimento" },
+        "servingLabel": { "type": "string", "description": "Descrição da porção base" },
+        "servings": { "type": "number", "description": "Quantidade de porções" },
+        "calories": { "type": "integer", "description": "Total de calorias consumidas (kcal)" },
+        "proteinG": { "type": "number", "description": "Proteínas em gramas" },
+        "carbsG": { "type": "number", "description": "Carboidratos em gramas" },
+        "fatG": { "type": "number", "description": "Gorduras em gramas" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())" }
+      },
+      "required": [
+        "userId",
+        "dateKey",
+        "mealType",
+        "foodName",
+        "servingLabel",
+        "servings",
+        "calories",
+        "proteinG",
+        "carbsG",
+        "fatG",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "WaterLog": {
+      "title": "WaterLog",
+      "description": "Consumo diário de água em mililitros.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "UID do proprietário" },
+        "dateKey": { "type": "string", "description": "Data no formato YYYY-MM-DD" },
+        "amountMl": { "type": "integer", "description": "Total de água consumida no dia em ml" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())" }
+      },
+      "required": ["userId", "dateKey", "amountMl", "createdAt", "updatedAt"]
+    },
+    "CustomFood": {
+      "title": "CustomFood",
+      "description": "Alimento personalizado criado pelo usuário para reutilização rápida.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "UID do proprietário" },
+        "name": { "type": "string", "description": "Nome do alimento" },
+        "category": { "type": "string", "description": "Categoria nutricional" },
+        "servingLabel": { "type": "string", "description": "Porção padrão" },
+        "calories": { "type": "integer", "description": "Calorias por porção (kcal)" },
+        "proteinG": { "type": "number", "description": "Proteínas por porção (g)" },
+        "carbsG": { "type": "number", "description": "Carboidratos por porção (g)" },
+        "fatG": { "type": "number", "description": "Gorduras por porção (g)" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp (FieldValue.serverTimestamp())" }
+      },
+      "required": [
+        "userId",
+        "name",
+        "category",
+        "servingLabel",
+        "calories",
+        "proteinG",
+        "carbsG",
+        "fatG",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Metas nutricionais e perfil do usuário"
+    },
+    "/users/{userId}/meal_entries/{entryId}": {
+      "schema": { "$ref": "#/entities/MealEntry" },
+      "description": "Refeições e alimentos registrados por dia"
+    },
+    "/users/{userId}/water_logs/{dateKey}": {
+      "schema": { "$ref": "#/entities/WaterLog" },
+      "description": "Registro diário de ingestão de água"
+    },
+    "/users/{userId}/custom_foods/{foodId}": {
+      "schema": { "$ref": "#/entities/CustomFood" },
+      "description": "Alimentos personalizados salvos pelo usuário"
+    }
+  }
+}

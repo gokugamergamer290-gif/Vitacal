@@ -1,0 +1,6 @@
+{
+  "name": "VitaCal",
+  "description": "Aplicativo contador de calorias e macronutrientes com registro diário de refeições, hidratação e metas nutricionais personalizadas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

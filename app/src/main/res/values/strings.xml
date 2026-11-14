@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">VitaCal</string>
+    <string name="sign_in_with_google">Entrar com o Google</string>
+    <string name="auth_hero_desc">Ilustração de uma tigela nutritiva com salmão, abacate, frutas e copo de água</string>
+    <string name="auth_headline">Nutrição clara para cada dia</string>
+    <string name="auth_subtitle">Acompanhe calorias, macronutrientes e hidratação com metas sob medida e sincronização automática.</string>
+    <string name="auth_feature_calories_title">Calorias e macros em tempo real</string>
+    <string name="auth_feature_calories_desc">Anel diário com proteínas, carboidratos e gorduras.</string>
+    <string name="auth_feature_water_title">Hidratação inteligente</string>
+    <string name="auth_feature_water_desc">Registre copos de água com um toque.</string>
+    <string name="auth_feature_sync_title">Sincronização segura na nuvem</string>
+    <string name="auth_feature_sync_desc">Seu diário alimentar sempre salvo na sua conta Google.</string>
+    <string name="nav_diary">Hoje</string>
+    <string name="nav_foods">Alimentos</string>
+    <string name="nav_progress">Progresso</string>
+    <string name="add_food_fab">Registrar alimento</string>
+    <string name="sign_out">Sair da conta</string>
+</resources>
